@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socket.io simple chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
+</head>
+<!-- <body>
+    <div class="container">
+      <div class="inbox">
+        <div class="inbox__people">
+          <h4>Active users</h4>
+        </div>
+        <div class="inbox__messages">
+          <div class="messages__history"></div>
+          <div class="fallback"></div>
+        </div>
+      </div>
+
+      <form class="message_form">
+        <input type="text" class="message_form__input" placeholder="Type a message" />
+        <button class="message_form__button" type="submit">
+          Enter
+        </button>
+      </form>
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+  </body> -->
+
+<body class="bg-gray-100">
+
+
+    <div class="relative">
+        <div id="new-user-noti" class="new-user-noti hidden absolute mx-5 top-0 right-0 flex items-center w-full max-w-xs p-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+            <div class="text-sm font-normal notification-msg">
+                Conversation archived.
+            </div>
+            <div class="flex items-center ms-auto space-x-2 rtl:space-x-reverse">
+                <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-undo" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Chat Container -->
+    <div class="max-w-3xl mx-auto my-8 p-6 bg-white shadow-md rounded-lg">
+        <div class="border-b border-gray-200 pb-4 mb-4">
+            <h1 class="text-2xl font-bold text-gray-800">Anonymous Group Chat
+                <span class="current-user-name"></span>
+            </h1>
+        </div>
+
+        <!-- Messages Container -->
+        <div id="messages" class="space-y-4 overflow-y-auto messages__history" style="max-height: 60vh;">
+        </div>
+
+        <!-- Message Input -->
+        <div class="mt-4">
+            <form class="message_form">
+                <div class="fallback text-sm"></div>
+                <div class="flex items-center space-x-2">
+                    <input id="message-input" type="text"
+                        class="message_form__input w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring focus:ring-indigo-500"
+                        placeholder="Type your message...">
+                    <button type="submit" class="message_form__button px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
