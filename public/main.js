@@ -28,7 +28,7 @@ const newUserConnected = async(user) => {
   const newUser = await response.json();
 
   // userName = user || `User${Math.floor(Math.random() * 1000000)}`;
-  userName = user || (newUser[0] != undefined ? `${newUser[0]}` : `User${Math.floor(Math.random() * 1000000)}`)
+  userName = user || (newUser[0] != undefined ? `You are: ${newUser[0]}` : `You are: User${Math.floor(Math.random() * 1000000)}`)
   if(!user) {
     document.querySelector('.current-user-name').innerHTML = `(${userName})`;
   }
