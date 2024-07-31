@@ -74,6 +74,12 @@ const addNewMessage = ({ user, message }) => {
 
 // new user is created so we generate nickname and emit event
 newUserConnected();
+var timeout;
+
+function timeoutFunction() {
+  socket.emit("typing", false);
+}
+
 
 messageForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -94,6 +100,8 @@ inputField.addEventListener("keyup", () => {
     isTyping: inputField.value.length > 0,
     nick: userName,
   });
+  clearTimeout(timeout)
+  timeout = setTimeout(timeoutFunction, 1000)
 });
 
 socket.on("new user", function (data) {
