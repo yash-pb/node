@@ -11,9 +11,24 @@ const hideNotiSec = 5000;
 
 let userName = "";
 
-const newUserConnected = (user) => {
+const newUserConnected = async(user) => {
   // debugger;
-  userName = user || `User${Math.floor(Math.random() * 1000000)}`;
+
+  const myHeaders = new Headers();
+  myHeaders.append("accept", "*/*");
+  myHeaders.append("X-Api-Key", "624f306260a843ef8f67442624de2b9f");
+
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+
+  const response = await fetch("https://randommer.io/api/Name?nameType=fullname&quantity=1", requestOptions)
+  const newUser = await response.json();
+
+  // userName = user || `User${Math.floor(Math.random() * 1000000)}`;
+  userName = user || (newUser[0] != undefined ? `${newUser[0]}` : `User${Math.floor(Math.random() * 1000000)}`)
   if(!user) {
     document.querySelector('.current-user-name').innerHTML = `(${userName})`;
   }
