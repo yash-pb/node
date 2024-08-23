@@ -7,6 +7,7 @@ const HOST = "0.0.0.0"; // Vercel will dynamically assign the host and port
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, "public")));
 // Serve static files from the "public" directory
 app.use(express.static("public"));
 
