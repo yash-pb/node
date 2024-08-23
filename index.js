@@ -3,8 +3,8 @@ const socket = require("socket.io");
 
 try {
     // App setup
-    const PORT = 5000;
-    const HOST = "192.168.1.110";
+    const PORT = 3000;
+    const HOST = "localhost";
     const app = express();
     const server = app.listen(PORT, HOST, function () {
       console.log(`Listening on port ${PORT}`);
