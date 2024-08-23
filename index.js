@@ -1,6 +1,5 @@
 const express = require("express");
-// const socket = require("socket.io");
-const socket = io("https://node-pink-chi.vercel.app");
+const socket = require("socket.io");
 const path = require("path");
 
 const PORT = process.env.PORT || 3000;
