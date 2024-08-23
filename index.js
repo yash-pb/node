@@ -1,5 +1,6 @@
 const express = require("express");
-const socket = require("socket.io");
+const http = require("http"); // Use http.createServer instead of app.listen
+const socketIo = require("socket.io");
 const path = require("path");
 
 const PORT = process.env.PORT || 3000;
@@ -7,29 +8,26 @@ const HOST = "0.0.0.0"; // Vercel will dynamically assign the host and port
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "public")));
 // Serve static files from the "public" directory
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Route for the root URL
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const server = app.listen(PORT, HOST, function () {
-  console.log(`Listening on port ${PORT}`);
-  console.log(`http://${HOST}:${PORT}`);
-});
-
-// Socket setup
-const io = socket(server, {
-  transports: ['polling'],
+// Create an HTTP server and pass it to Socket.io
+const server = http.createServer(app);
+const io = socketIo(server, {
+  transports: ['polling'], // Ensure that polling is enabled
 });
 
 const activeUsers = new Set();
 
-io.on("connection", function (socket) {
-  socket.on("new user", function (data) {
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  socket.on("new user", (data) => {
     socket.userId = data;
     activeUsers.add(data);
     io.emit("new user", [...activeUsers]);
@@ -40,11 +38,15 @@ io.on("connection", function (socket) {
     io.emit("user disconnected", socket.userId);
   });
 
-  socket.on("chat message", function (data) {
+  socket.on("chat message", (data) => {
     io.emit("chat message", data);
   });
 
-  socket.on("typing", function (data) {
+  socket.on("typing", (data) => {
     socket.broadcast.emit("typing", data);
   });
+});
+
+server.listen(PORT, HOST, () => {
+  console.log(`Server is running on http://${HOST}:${PORT}`);
 });
