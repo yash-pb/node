@@ -22,7 +22,9 @@ const server = app.listen(PORT, HOST, function () {
 });
 
 // Socket setup
-const io = socket(server);
+const io = socket(server, {
+  transports: ['polling'],
+});
 
 const activeUsers = new Set();
 

@@ -37,9 +37,9 @@ const newUserConnected = async(user) => {
 };
 
 const addToUsersBox = (userName) => {
-  if (!!document.querySelector(`.${userName}-userlist`)) {
-    return;
-  }
+  // if (!!document.querySelector(`.${userName}-userlist`)) {
+  //   return;
+  // }
 
   notificationMsg.innerHTML = `New user added ${userName}`
   notiBox.classList.remove("hidden");
