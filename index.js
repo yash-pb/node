@@ -5,10 +5,11 @@ try {
     // App setup
     const PORT = 3000;
     const HOST = "localhost";
+    // const HOST = "192.168.1.110";
     const app = express();
-    const server = app.listen(PORT, HOST, function () {
+    const server = app.listen(PORT, function () {
       console.log(`Listening on port ${PORT}`);
-      console.log(`http://${HOST}:${PORT}`);
+      // console.log(`http://${HOST}:${PORT}`);
     });
     // Static files
     app.use(express.static("public"));
