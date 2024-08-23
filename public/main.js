@@ -1,4 +1,5 @@
-const socket = io();
+// const socket = io();
+const socket = io("https://node-pink-chi.vercel.app");
 
 const inboxPeople = document.querySelector(".inbox__people");
 const inputField = document.querySelector(".message_form__input");
