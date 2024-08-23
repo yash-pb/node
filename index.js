@@ -4,7 +4,8 @@ const socket = require("socket.io");
 try {
     // App setup
     const PORT = 3000;
-    const HOST = "localhost";
+    // const HOST = "localhost";
+    const HOST = "0.0.0.0"; 
     // const HOST = "192.168.1.110";
     const app = express();
     const server = app.listen(PORT, HOST, function () {
